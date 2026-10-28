@@ -7,3 +7,10 @@ cd OlimpiadasJava
 mvn clean verify
 java -jar target/olimpiadas-java-1.0.0.jar
 ```
+
+## Integrantes
+
+- Alfredo Montealegre
+- Claudio de la Rocha
+- Steven Flores
+- Maria Carrasco
