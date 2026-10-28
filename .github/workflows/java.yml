@@ -1,0 +1,33 @@
+name: Java
+
+on:
+  push:
+    paths:
+      - 'OlimpiadasJava/**'
+      - '.github/workflows/java.yml'
+  pull_request:
+    paths:
+      - 'OlimpiadasJava/**'
+      - '.github/workflows/java.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: ['17', '21']
+    defaults:
+      run:
+        working-directory: OlimpiadasJava
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+          cache: maven
+          cache-dependency-path: OlimpiadasJava/pom.xml
+      - run: mvn --batch-mode --no-transfer-progress clean verify
